@@ -1,22 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ListPage } from './views/list';
-import { DetailPage } from './views/detail';
-import { CorporationProvider } from './core/corporation-provider.component';
+import { hot } from 'react-hot-loader/root';
+import { RouterComponent } from 'core/router';
+import { ThemeProviderComponent } from 'core/theme';
 
-export const App = () => {
+const App: React.FunctionComponent = () => {
   return (
-    <Router>
-      <Switch>
-        <CorporationProvider>
-          <Route exact path="/">
-            <ListPage />
-          </Route>
-          <Route path="/detail/:login">
-            <DetailPage />
-          </Route>
-        </CorporationProvider>
-      </Switch>
-    </Router>
+    <ThemeProviderComponent>
+      <RouterComponent />
+    </ThemeProviderComponent>
   );
 };
+
+export default hot(App);
